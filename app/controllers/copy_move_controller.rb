@@ -32,7 +32,7 @@ class CopyMoveController < ApplicationController
         end
       end      
     end
-    redirect_to(page_index_url)
+    redirect_to(admin_pages_url)
   end
 
 private
@@ -40,7 +40,7 @@ private
   def find_page
     @page = Page.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to(page_index_url)
+    redirect_to(admin_pages_url)
   end
 
   def find_new_parent
@@ -89,8 +89,8 @@ private
         # debugger
         page.children.reverse.each do |sub_page|
           next if sub_page.id == @new_page.id
-          new_page = duplicate_page(sub_page, new_page)
-          duplicate_children(sub_page, new_page, true)
+          new_sub_page = duplicate_page(sub_page, new_page)
+          duplicate_children(sub_page, new_sub_page, true)
         end
       end
     end
