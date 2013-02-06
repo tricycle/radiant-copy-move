@@ -7,6 +7,7 @@ module CopyMove
         index = (index || 0) + 1
         test_page.title = "#{title} (Copy#{' '+index.to_s if index > 1})"
         test_page.slug = "#{slug}-#{index}"
+        test_page.errors.clear
       end
       {:slug => test_page.slug, :title => test_page.title}
     end
